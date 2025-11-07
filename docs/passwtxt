@@ -1,0 +1,6 @@
+pgadmin: pgadmin2025
+travel_agency_db: 1234
+Superusuario Django:
+	* User: admin
+	* email: tponsmiquel@gmail.com
+	*password: Ledzeppelin777

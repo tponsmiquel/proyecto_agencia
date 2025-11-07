@@ -1,0 +1,13 @@
+clients (1) ───< dossiers (N)
+dossiers (1) ───< services (N)
+services (1) ───< products (N)
+services (1) ───< passengers (N)
+services (1) ───< documents (N)
+dossiers (1) ───< payments (N)
+payments (1) ───< refunds (N)
+dossiers (1) ───< invoices (N)
+invoices (N) ───<─> (N) services
+suppliers (1) ───< products (N)
+payment_methods (1) ───< payments (N)
+users (1) ───< reports (N)
+

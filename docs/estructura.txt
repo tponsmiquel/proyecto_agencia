@@ -1,0 +1,212 @@
+1) CLIENTE (/client/)
+1.1) Pantalla global/general de clientes:
+	a) Filtros de búsqueda:
+		- Nombre de cliente
+		- dni del cliente
+		- email
+		- telefono
+		- tipo de cliente: (selector) tipo empresa o tipo persona
+		
+	b) Botón de crear 'Cliente nuevo'. Abre un pop-up con el siguiente formulario:
+		- Tipo de cliente (obligatorio)
+		- Nombre (obligatorio)
+		- Primer Apellido (obligatorio)
+		- Segundo apellido
+		- Tipo de documento: selector con las siguientes opciones (obligatorio):
+			* DNI (España)
+			* NIE (España)
+			* Pasaporte (Resto del mundo)
+		- Nº de documento (obligatorio)
+		- Email (obligatorio)
+		- Teléfono móvi
+		- Telefono fijo
+		- Botón de guardar para guardar los cambio.
+		
+	c) Listado/tabla de resultados de los filtros aplicados. Tendrá las siguientes columnas:
+		- Nombre
+		- Email
+		- Teléfono
+		- Acciones: icono de lápiz para editar el cliente (navegación a "editar cliente")
+		
+1.2) Pantalla de editar clientes:
+	a) A nivel superior, 3 pestañas: Ficha, Expedientes, Gestión.
+	b) Información del cliente: Independientemente de la pestaña seleccionada, justo debajo siempre aparecerá un apartado llamado Información del cliente (se pintará en modo griseado, no editable por parte del usuario):
+		*Nombre		* Correo electrónico
+		*Tipo de documento	* Teléfono
+		*Nº de documento
+		
+	c) Justo debajo de "Información del cliente" se irá dibujando el contenido dependiendo de la pestaña seleccionada:
+		a.1) Pestaña Ficha:
+			a.1.1) Datos Generales: permite editar los datos del cliente por si hubiese cambios o errores en los datos:
+				* Todos los campos de cliente mencionados + 4 adiciones: Dirección, localidad, código postal, provincia y País
+				* Botón de guardar
+				
+		a.2) Pestaña Expedientes:
+			a.2.1) Botón "Nuevo expediente" para crear expedientes asociados al cliente.
+			a.2.2) Tabla de expedientes asociados al cliente, con las siguientes columnas:
+				* Código del expediente (que sea linkeable para navegar al expediente)
+				* Estado: abierto/cerrado, etc...
+				* PVP
+				* Cobrado
+				* Facturado
+				* Nº de servicios
+				
+		a.3) Pestaña de Gestión:
+			a.3.1) Facturas:
+				* Filtro de búsqueda:
+					- Código de factura
+					- Fecha de emisión
+					- Liquidadas (si/no/todas)
+				* Listado/tabla de resultados según los filtros aplicados, con las siguientes columnas:
+					- Código (linkeable para ver la factura)
+					- Fecha emisión: tipo fecha
+					- Total facturado: tipo moneda
+					- Importe liquidado: tipo moneda
+					- Pendiente: tipo moneda
+					
+2) EXPEDIENTE (/dossier/)
+2.1) Pantalla general/global de expedientes
+	a) Filtros de búsqueda:
+		- Código de expediente
+		- Estado del expediente
+		- Título del expediente
+		- Nombre del cliente / Dni / email / telf (multibúsqueda en un solo campo)
+		- Tipo de cliente
+		
+	b) Tabla/listado de resultados según los filtros aplciados, con las columnas:
+		- Código (linkeable a la pantalla del expediente)
+		- Cliente: nombre completo
+		- Estado
+		- PVP: tipo moneda
+		- Cobrado: tipo moneda
+		- Facturado: tipo moneda
+		- Nº de servicios: tipo numérico
+		
+2.2) Pantalla de expedientes (edición de expedientes) => (/dossier/edit/dossier_id)
+	a) Header con lo siguiente: "Expediente + codigo_expediente + Nombre del cliente (linkeable a su ficha de cliente)
+	b) Pestañas:
+		b1) Datos generales: formulario:
+			- Título expediente
+			- Estado: abierto / cerrado
+			- Adultos: selector numérico con opcion de añadir (up) o quitar (down)
+			- Niños: selector numérico con opcion de añadir (up) o quitar (down)
+			- Bebes: selector numérico con opcion de añadir (up) o quitar (down)
+			- Total a cobrar: supongo que será el sumatorio de los pvp de los servicios
+			- Total cobrado
+			- Pendiente de cobro
+			- Total facturado
+			- Pendiente de facturar
+			- Fecha inicio viaje
+			- Fecha fin viaje
+			
+		b2) Servicios:
+			* Pestañita de "Añadir servicio" -> abrirá un modal/pop-up con el siguiente texto:
+				+ _"¿Que tipo de servicio desea añadir?"
+				+ Desplegable con 4 opciones:
+					· Autocar
+					· Avión
+					· Crucero
+					· Hotel
+				+ Cuando el usuario haya seleccionado una opción, desbloquear el botón "aceptar".
+				+ El botón aceptar navegará a la pantalla de añadir servicio (/booking-service/edit/id?dossier=dossier_id)
+			* Debajo de la pestañita "Añadir servicio" se listarán todos los servicios creados para dicho expediente, con las siguientes columnas:
+				- Localizador (tengo dudas de si incluirlo)
+				- Nº de billete
+				- Servicio (avión, hotel, etc.)
+				- Proveedor
+				- Total cobrar a cliente
+				- Total pagar a proveedor
+				- Documentos asociados: si / no
+				- Acciones: 2 iconos: lápiz para editar el servicio / papelera para borrar servicio
+				
+			* Pantalla de "Añadir servicio":
+				a) Header con lo siguiente: "Servicio + servicio_nombre" + nombre del cliente (linkeable a su ficha)
+				b) 4 módulos desplegables: Información del servicio, datos del vuelo (dependerá del tipo de servicio), Añadir pasajeros, Ficheros adjuntos:
+					m-1) Información del servicio: formulario:
+						- Nº servicio (griseado no editable)
+						- Nº de expediente
+						- Fecha de reserva (now, obligatorio)
+						- Fecha de inicio (obligatorio)
+						- Fecha de salida (obligatorio)
+						- Origen: localizacion (obligatorio)
+						- Destino: localizacion (obligatorio)
+						- Descripcion del servicio: para añadir comentarios
+						- Nº d ebillete (obligatorio)
+						- Proveedor (Iberia, CostaCruceros, Alsa, etc) => AL seleccionar un proveedor se activará el botón "Añadir producto":
+							* "Añadir producto" => formulario:
+								- Total: monetario
+								- Gastos de gestión
+								- Resultados: 
+									- PVP: monetario
+									- Total a cobrar al cliente: total + gastos de gestión
+									- Total a pagar al proveedor: tengo dudas
+								- Botón de guardar (guardar producto).
+								
+					m-2) Datos vuelo: subpestañita de "Añadir vuelo":
+						- Nª de vuelo
+						- Origen: localizacion (obligatorio)
+						- Destino: localizacion (obligatorio)
+						- Fecha y hora de salida
+						- Fwecha y hora de llegada
+						- Botón de añadir (añadir vuelo)
+						
+					m-3) Añadir pasajeros:
+						- Título: selector de señór, señora, señorita (obligatorio)
+						- Nombre
+						- Apellidos
+						- Fecha de nacimiento:
+						- Telefono
+						- Email
+						- Tipo de documento
+						- Nº de documento
+					
+					m-4) Ficheros adjuntos: permite añadir, adjuntar documentos y los va listando 
+					
+					
+		b3) Cobros y reembolsos:
+			- Subpestaña "Añadir cobro" -> abre un modal/pop-up con la siguiente información:
+				* Sección "Resumen":
+					-Total servicios: recuento
+					-Pendiente de cobro: monetario
+					-Total PVP por los servicios: monetario
+					-Total cobrado: monetario
+				* Sección "Realizar cobro":
+					- Método de pago (selctor con 3 opciones: metálico, tarjeta de crédito, pago por link)
+					- Cantidad cobrada
+					- Cuidado si ha elegido metodo de pago tarjeta crédito y/o pago por link, habrá que mostrar otros campos quizas)
+					- Concepto
+					- Botón de "añadir"
+				* Sección "Histórico de cobros",listado con la siguientes columnas: id del cobro, estado, forma de pago, importe cobrado.
+				
+			- Subpestaña "Añadir reembolso". Solo se verá activa si ya existe un cobro que se pueda reembolsar. Aplica runa lógica similar que en añadir cobros.
+			- Debajo de ambas subpestañas, listar todos los cobros y reembolsos para dicho expediente, con las columnas:
+				- id
+				- estado
+				- forma de pago
+				- importe
+				
+		
+		b4) Facturas:
+			- SUbpestaña "añadir factura". SOlo se podrá facturar si ya existe un cobro previo, si no no se puede facturar.
+			- AL pulsar es "añadir factura", se listarán los diferentes servicios (cobrados) que pueden ser objeto de facturación. En ese listado, cada servicio tendrá un check que permita seleccionarlo. Es decir, permitir generar facturas solo de los servicios seleccionados.
+			- Listado de servicios a facturar:
+				- Checkbox
+				- Nº de billete
+				- Servicio (avión, crucero, hotel...)
+				- Total cobrar a cliente
+				- Total pagar a proveedor
+				- Documentos asociados: si/no
+			- Botón de "añadir factura"
+			- Listado de facturas generadas/emitidas para dicho expediente. Columnas:
+				* Código factura
+				* Nº servicios
+				* Fecha emisión
+				* Total facturado
+				* Acciones: icono de documento que permita abrir la factura en formato pdf
+		
+							
+				
+			
+				
+
+		

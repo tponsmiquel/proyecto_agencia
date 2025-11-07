@@ -1,0 +1,148 @@
+-- =======================
+--   MAIN ENTITIES
+-- =======================
+
+TABLE clients (
+    id SERIAL PRIMARY KEY,
+    client_type VARCHAR(20) NOT NULL,        -- person / company
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    document_type VARCHAR(20) NOT NULL,      -- dni / nie / passport
+    document_number VARCHAR(50) NOT NULL,
+    email VARCHAR(120) UNIQUE NOT NULL,
+    phone_mobile VARCHAR(20),
+    phone_landline VARCHAR(20),
+    address VARCHAR(200),
+    city VARCHAR(100),
+    postal_code VARCHAR(20),
+    province VARCHAR(100),
+    country VARCHAR(100)
+);
+
+TABLE dossiers (
+    id SERIAL PRIMARY KEY,
+    code VARCHAR(50) UNIQUE NOT NULL,
+    title VARCHAR(200),
+    status VARCHAR(20) NOT NULL,             -- open / closed
+    client_id INT REFERENCES clients(id),
+    start_date DATE,
+    end_date DATE,
+    total_pvp DECIMAL(10,2),
+    total_paid DECIMAL(10,2),
+    total_pending DECIMAL(10,2),
+    total_invoiced DECIMAL(10,2)
+);
+
+TABLE suppliers (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    contact_email VARCHAR(120),
+    contact_phone VARCHAR(20)
+);
+
+TABLE services (
+    id SERIAL PRIMARY KEY,
+    dossier_id INT REFERENCES dossiers(id),
+    service_type VARCHAR(20) NOT NULL,       -- flight / hotel / cruise / bus
+    supplier_id INT REFERENCES suppliers(id),
+    booking_date DATE,
+    start_date DATE,
+    departure_date DATE,
+    origin VARCHAR(100),
+    destination VARCHAR(100),
+    description TEXT,
+    ticket_number VARCHAR(100),
+    locator VARCHAR(100),
+    total_client DECIMAL(10,2),
+    total_supplier DECIMAL(10,2)
+);
+
+TABLE products (
+    id SERIAL PRIMARY KEY,
+    service_id INT REFERENCES services(id),
+    supplier_id INT REFERENCES suppliers(id),
+    base_amount DECIMAL(10,2),
+    management_fee DECIMAL(10,2),
+    total_client DECIMAL(10,2),
+    total_supplier DECIMAL(10,2)
+);
+
+TABLE passengers (
+    id SERIAL PRIMARY KEY,
+    service_id INT REFERENCES services(id),
+    title VARCHAR(10),
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    birth_date DATE,
+    phone VARCHAR(20),
+    email VARCHAR(120),
+    document_type VARCHAR(20),
+    document_number VARCHAR(50)
+);
+
+TABLE documents (
+    id SERIAL PRIMARY KEY,
+    service_id INT REFERENCES services(id),
+    file_name VARCHAR(200),
+    file_type VARCHAR(50),
+    file_url TEXT
+);
+
+TABLE payment_methods (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
+);
+
+TABLE payments (
+    id SERIAL PRIMARY KEY,
+    dossier_id INT REFERENCES dossiers(id),
+    payment_method_id INT REFERENCES payment_methods(id),
+    amount DECIMAL(10,2),
+    date DATE,
+    concept VARCHAR(200),
+    status VARCHAR(20)                     -- pending / completed
+);
+
+TABLE refunds (
+    id SERIAL PRIMARY KEY,
+    payment_id INT REFERENCES payments(id),
+    amount DECIMAL(10,2),
+    date DATE,
+    reason TEXT
+);
+
+TABLE invoices (
+    id SERIAL PRIMARY KEY,
+    dossier_id INT REFERENCES dossiers(id),
+    code VARCHAR(50) UNIQUE,
+    issue_date DATE,
+    total_amount DECIMAL(10,2),
+    is_settled BOOLEAN DEFAULT FALSE
+);
+
+TABLE invoice_services (
+    invoice_id INT REFERENCES invoices(id),
+    service_id INT REFERENCES services(id),
+    PRIMARY KEY (invoice_id, service_id)
+);
+
+TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) UNIQUE,
+    password_hash VARCHAR(255),
+    email VARCHAR(120) UNIQUE,
+    full_name VARCHAR(150),
+    role VARCHAR(50),                      -- admin / agent / manager
+    is_active BOOLEAN DEFAULT TRUE
+);
+
+TABLE reports (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    description TEXT,
+    created_at TIMESTAMP DEFAULT NOW(),
+    created_by INT REFERENCES users(id),
+    filters JSONB,
+    data_snapshot JSONB
+);
+

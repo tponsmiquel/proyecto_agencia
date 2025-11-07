@@ -1,0 +1,38 @@
+# ==== Python / Django ====
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+*.log
+db.sqlite3
+
+# Virtualenvs
+venv/
+backend/venv/
+
+# Entornos / secretos
+.env
+*.env
+.env.*
+
+# Django estáticos y media (se generan o se almacenan fuera)
+staticfiles/
+media/
+
+# ==== Node / Angular ====
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+npm-debug.log*
+yarn-error.log*
+
+# ==== IDE / SO ====
+.vscode/
+.idea/
+.DS_Store
+
+# ==== Tests / coverage ====
+.pytest_cache/
+.coverage
+htmlcov/
+coverage/

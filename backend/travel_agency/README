@@ -1,0 +1,8 @@
+app:core => a base de tu modelo de negocio (clientes, expedientes, servicios, etc.).
+
+models.py → aquí definiremos tus tablas (entidades del modelo de datos).
+admin.py → sirve para registrar los modelos y gestionarlos desde /admin.
+apps.py → metadatos de la app (nombre, configuración).
+migrations/ → Django guarda los cambios estructurales que apliques al modelo.
+views.py → vistas o endpoints (cuando lleguemos a la API REST).
+tests.py → pruebas unitarias (más adelante).

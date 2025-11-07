@@ -1,0 +1,14 @@
+Proyecto Integrado
+
+Seria interesante que usara una API de terceros
+
+Primer entrega: idea inicial
+Segunda entrega: 2ª - 3ª semana de noviembre - Avance del proyecto
+Tercera: borrador (casi entrega final)
+Final: mediados diciembre
+Exposiciones: justo antes de navidad
+
+No puede ser una landing page al uso.
+Tiene que haber cierta interacción con el cliente que usa la app.
+Seria interesante que usara una API de terceros
+Cualquier tecnología es bienvenida.
