@@ -1,5 +1,5 @@
 from django.db import models
-from backend.travel_agency.core.models import BaseModel
+from core.models import BaseModel
 
 # Create your models here.
 class Client(BaseModel):
