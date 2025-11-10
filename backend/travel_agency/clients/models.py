@@ -31,13 +31,13 @@ class Client(BaseModel):
         db_table = "clients"
         constraints = [
             models.UniqueConstraint(
-                fields=["document_type", "document_number"],
-                name="uniq_document"
+                fields=['document_type', 'document_number'],
+                name='uniq_document'
             )
         ]
         indexes = [
-            models.Index(fields=["last_name", "first_name"]),
-            models.Index(fields=["email"]),
+            models.Index(fields=['last_name', 'first_name']),
+            models.Index(fields=['email']),
         ]
 
     def __str__(self):
