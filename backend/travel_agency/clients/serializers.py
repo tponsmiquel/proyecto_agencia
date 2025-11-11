@@ -1,4 +1,4 @@
-from backend.travel_agency.clients.models import Client
+from .models import Client
 from rest_framework import serializers
 
 
