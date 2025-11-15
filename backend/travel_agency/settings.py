@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'services',
     'products',
     'passengers',
+    'documents',
 ]
 
 MIDDLEWARE = [
