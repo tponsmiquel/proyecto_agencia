@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'refunds',
     'invoices',
     'users',
+    'reports',
 ]
 
 MIDDLEWARE = [
