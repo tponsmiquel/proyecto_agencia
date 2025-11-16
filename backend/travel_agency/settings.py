@@ -55,7 +55,8 @@ INSTALLED_APPS = [
     'passengers',
     'documents',
     'payments',
-    'refunds'
+    'refunds',
+    'invoices',
 ]
 
 MIDDLEWARE = [
