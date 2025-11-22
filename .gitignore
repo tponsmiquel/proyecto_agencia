@@ -20,9 +20,10 @@ staticfiles/
 media/
 
 # ==== Node / Angular ====
-frontend/node_modules/
-frontend/dist/
-frontend/.angular/
+node_modules/
+dist/
+.angular/
+.env
 npm-debug.log*
 yarn-error.log*
 
