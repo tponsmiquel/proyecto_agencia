@@ -9,13 +9,19 @@ export const routes: Routes = [
       {
         path: 'home',
         loadComponent: () =>
-          import('./features/home/home/home.component').then(m => m.HomeComponent)
+          import('./features/home/home').then(m => m.HomeComponent)
       },
       {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full'
-      }
+      },
+      {
+        path: 'clients',
+        loadComponent: () =>
+          import('./features/clients/clients-list/clients-list')
+            .then(m => m.ClientsListComponent)
+      },
     ]
   }
 ];
