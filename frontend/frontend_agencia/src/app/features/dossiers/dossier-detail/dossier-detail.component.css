@@ -1,0 +1,16 @@
+.page-title {
+  font-size: 22px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.client-link {
+  color: #bbdefb; /* azul claro que combina con toolbar */
+  text-decoration: none;
+}
+
+.client-link:hover {
+  text-decoration: underline;
+}

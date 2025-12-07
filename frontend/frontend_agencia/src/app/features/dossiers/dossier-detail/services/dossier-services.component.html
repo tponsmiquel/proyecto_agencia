@@ -1,0 +1,72 @@
+<div class="services-header">
+  <button mat-flat-button color="primary" (click)="openTypeSelector()">
+    Nuevo servicio
+  </button>
+</div>
+
+<table mat-table [dataSource]="services" class="mat-elevation-z2 services-table">
+
+  <!-- Localizador -->
+  <ng-container matColumnDef="locator">
+    <th mat-header-cell *matHeaderCellDef>Localizador</th>
+    <td mat-cell *matCellDef="let s">{{ s.locator || '-' }}</td>
+  </ng-container>
+
+  <!-- Ticket -->
+  <ng-container matColumnDef="ticket">
+    <th mat-header-cell *matHeaderCellDef>Nº Billete</th>
+    <td mat-cell *matCellDef="let s">{{ s.ticket_number || '-' }}</td>
+  </ng-container>
+
+  <!-- Tipo de servicio -->
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef>Servicio</th>
+    <td mat-cell *matCellDef="let s">{{ s.service_type | titlecase }}</td>
+  </ng-container>
+
+  <!-- Proveedor 
+  <ng-container matColumnDef="supplier">
+    <th mat-header-cell *matHeaderCellDef>Proveedor</th>
+    <td mat-cell *matCellDef="let s">{{ getSupplierName(s.supplier) }}</td>
+  </ng-container> -->
+
+  <!-- Total cliente -->
+  <ng-container matColumnDef="total_client">
+    <th mat-header-cell *matHeaderCellDef>Total cliente</th>
+    <td mat-cell *matCellDef="let s">{{ s.total_client }} €</td>
+  </ng-container>
+
+  <!-- Total proveedor -->
+  <ng-container matColumnDef="total_supplier">
+    <th mat-header-cell *matHeaderCellDef>Total proveedor</th>
+    <td mat-cell *matCellDef="let s">{{ s.total_supplier }} €</td>
+  </ng-container>
+
+  <!-- Documentos asociados -->
+  <ng-container matColumnDef="docs">
+    <th mat-header-cell *matHeaderCellDef>Docs</th>
+    <td mat-cell *matCellDef="let s">
+      {{ s.documents_count > 0 ? 'Sí (' + s.documents_count + ')' : 'No' }}
+    </td>
+  </ng-container>
+
+  <!-- Acciones -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let s">
+
+      <button mat-icon-button color="primary" (click)="editService(s.id)">
+        <mat-icon>edit</mat-icon>
+      </button>
+
+      <button mat-icon-button color="warn" (click)="deleteService(s.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+</table>

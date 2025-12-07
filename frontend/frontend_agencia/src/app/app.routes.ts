@@ -27,6 +27,18 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/clients/client-edit/client-edit.component')
             .then(m => m.ClientEditComponent)
+      },
+      {
+        path: 'dossiers',
+        loadComponent: () =>
+          import('./features/dossiers/dossiers-list/dossiers-list')
+            .then(m => m.DossiersListComponent)
+      },
+      {
+        path: 'dossiers/:id',
+        loadComponent: () =>
+          import('./features/dossiers/dossier-detail/dossier-detail.component')
+            .then(m => m.DossierDetailComponent)
       }
     ]
   }

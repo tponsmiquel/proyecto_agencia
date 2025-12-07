@@ -1,0 +1,11 @@
+.services-header {
+  margin-bottom: 16px;
+}
+
+.services-table {
+  width: 100%;
+}
+
+.services-table th {
+  font-weight: 600;
+}

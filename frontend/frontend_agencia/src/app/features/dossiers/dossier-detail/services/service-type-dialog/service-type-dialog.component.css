@@ -1,0 +1,14 @@
+.dialog-body {
+  padding: 12px 0;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 10px;
+}

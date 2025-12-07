@@ -1,0 +1,30 @@
+.page-title {
+  margin-bottom: 12px;
+}
+
+.filters-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+
+.search-wide {
+  width: 400px;
+  min-width: 250px;
+}
+
+.dossier-table {
+  width: 100%;
+}
+
+.dossier-table a {
+  color: #0d47a1;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.dossier-table a:hover {
+  text-decoration: underline;
+}

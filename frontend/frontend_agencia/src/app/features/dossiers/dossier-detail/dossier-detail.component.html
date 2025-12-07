@@ -1,0 +1,40 @@
+<mat-toolbar color="primary">
+  <span class="page-title">
+    Expediente {{ dossier.code }}
+
+    <ng-container *ngIf="client as c">
+      <a [routerLink]="['/clients', c.id]" class="client-link">
+        — {{ getClientFullName() }}
+      </a>
+    </ng-container>
+  </span>
+</mat-toolbar>
+
+<div class="content-wrapper" *ngIf="dossier; else loading">
+
+  <!-- 🔵 Aquí empiezan las PESTAÑAS del expediente -->
+  <mat-tab-group>
+
+    <!-- TAB 1: Datos generales -->
+    <mat-tab label="Datos generales">
+      <app-dossier-general
+        [dossier]="dossier" (updated)="reloadDossier()">
+      </app-dossier-general>-
+    </mat-tab>
+
+    <!-- TAB 2: Servicios -->
+    <mat-tab label="Servicios">
+      <app-dossier-services 
+      [dossierId]="dossier.id">
+      </app-dossier-services>
+    </mat-tab>
+
+  </mat-tab-group>
+
+</div>
+
+<ng-template #loading>
+  <div class="content-wrapper">
+    Cargando expediente...
+  </div>
+</ng-template>

@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Seleccionar tipo de servicio</h2>
+
+<div class="dialog-body">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Tipo de servicio</mat-label>
+    <mat-select [(ngModel)]="selectedType">
+      <mat-option *ngFor="let s of serviceTypes" [value]="s.value">
+        {{ s.label }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div class="dialog-actions">
+  <button mat-button (click)="cancel()">Cancelar</button>
+
+  <button mat-flat-button color="primary"
+          [disabled]="!selectedType"
+          (click)="accept()">
+    Aceptar
+  </button>
+</div>

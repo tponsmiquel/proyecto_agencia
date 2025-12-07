@@ -1,0 +1,73 @@
+<div class="general-grid" [formGroup]="form">
+
+  <!-- TÍTULO -->
+  <mat-form-field appearance="outline">
+    <mat-label>Título del expediente</mat-label>
+    <input matInput formControlName="title">
+  </mat-form-field>
+
+  <!-- ESTADO -->
+  <mat-form-field appearance="outline">
+    <mat-label>Estado</mat-label>
+    <mat-select formControlName="status">
+      <mat-option value="open">Abierto</mat-option>
+      <mat-option value="closed">Cerrado</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- FECHA INICIO -->
+  <mat-form-field appearance="outline">
+  <mat-label>Fecha inicio</mat-label>
+  <input matInput [matDatepicker]="startPicker" formControlName="start_date">
+  <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+  <mat-datepicker #startPicker></mat-datepicker>
+</mat-form-field>
+
+
+  <!-- FECHA FIN -->
+  <mat-form-field appearance="outline">
+    <mat-label>Fecha fin</mat-label>
+    <input matInput [matDatepicker]="endPicker" formControlName="end_date">
+    <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+    <mat-datepicker #endPicker></mat-datepicker>
+  </mat-form-field>
+
+  <!-- CAMPOS ECONÓMICOS → SOLO LECTURA -->
+
+  <!-- TOTAL PVP -->
+<mat-form-field appearance="outline">
+  <mat-label>Total PVP</mat-label>
+  <input matInput [value]="dossier.total_pvp | eurRight" disabled>
+</mat-form-field>
+
+<!-- TOTAL COBRADO -->
+<mat-form-field appearance="outline">
+  <mat-label>Total cobrado</mat-label>
+  <input matInput [value]="dossier.total_paid | eurRight" disabled>
+</mat-form-field>
+
+<!-- PENDIENTE DE COBRO -->
+<mat-form-field appearance="outline">
+  <mat-label>Pendiente de cobro</mat-label>
+  <input matInput [value]="dossier.total_pending | eurRight" disabled>
+</mat-form-field>
+
+<!-- TOTAL FACTURADO -->
+<mat-form-field appearance="outline">
+  <mat-label>Total facturado</mat-label>
+  <input matInput [value]="dossier.total_invoiced | eurRight" disabled>
+</mat-form-field>
+
+<!-- PENDIENTE DE FACTURAR -->
+<mat-form-field appearance="outline">
+  <mat-label>Pendiente de facturar</mat-label>
+  <input matInput [value]="pendingToInvoice | eurRight" disabled>
+</mat-form-field>
+</div>
+
+<!-- BOTÓN GUARDAR -->
+<div class="actions">
+  <button mat-flat-button color="primary" (click)="save()">
+    Guardar cambios
+  </button>
+</div>
