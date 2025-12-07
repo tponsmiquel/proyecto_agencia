@@ -22,6 +22,12 @@ export const routes: Routes = [
           import('./features/clients/clients-list/clients-list')
             .then(m => m.ClientsListComponent)
       },
+      {
+        path: 'clients/:id',
+        loadComponent: () =>
+          import('./features/clients/client-edit/client-edit.component')
+            .then(m => m.ClientEditComponent)
+      }
     ]
   }
 ];

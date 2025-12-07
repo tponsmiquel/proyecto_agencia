@@ -1,0 +1,27 @@
+.page-title {
+  margin-bottom: 12px;
+}
+
+/* Segunda fila: buscador + botón */
+.actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* Search form */
+.search-container {
+  flex: 1;
+  display: flex;
+}
+
+.search-field {
+  width: 100%;
+  max-width: 480px;
+}
+
+button[mat-flat-button] {
+  flex-shrink: 0;
+}

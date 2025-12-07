@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Client {
@@ -28,13 +28,40 @@ export interface Client {
 })
 export class ClientsService {
 
-  // Ajustaremos esta URL cuando me digas cuál es tu endpoint Django real
+  // CLIENTS //
   private apiUrl = 'http://localhost:8000/api/clients/';
 
   constructor(private http: HttpClient) {}
 
-  getClients(): Observable<Client[]> {
-    return this.http.get<Client[]>(this.apiUrl);
-  }
+  public getClients(params?: HttpParams): Observable<Client[]> {
+  return this.http.get<Client[]>(this.apiUrl, { params });
 }
 
+  public getClient(id: number): Observable<Client> {
+    return this.http.get<Client>(`${this.apiUrl}${id}/`);
+
+}
+
+  public createClient(clientData: Partial<Client>): Observable<Client> {
+  return this.http.post<Client>(this.apiUrl, clientData);
+}
+
+public updateClient(id: number, clientData: Partial<Client>): Observable<Client> {
+  return this.http.patch<Client>(`${this.apiUrl}${id}/`, clientData);
+}
+
+// DOSSIERS //
+
+public getClientDossiers(clientId: number): Observable<any[]> {
+  return this.http.get<any[]>(`http://localhost:8000/api/dossiers/?client=${clientId}`);
+}
+
+// INVOICES //
+public getClientInvoices(clientId: number): Observable<any[]> {
+  let params = new HttpParams().set('client', clientId);
+  return this.http.get<any[]>(`http://localhost:8000/api/invoices/`, { params });
+}
+
+
+
+}

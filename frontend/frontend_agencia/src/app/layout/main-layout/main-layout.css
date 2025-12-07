@@ -2,6 +2,23 @@
   height: 100vh;
 }
 
+/* ---- Sidenav más estrecho ---- */
+.sidebar {
+  width: 160px !important;      /* ancho ideal */
+  min-width: 160px !important;
+  max-width: 160px !important;
+
+  border-right: 1px solid #ddd;
+  padding-top: 16px;
+}
+
+/* Estilo de items */
+.sidebar a.mat-list-item {
+  font-size: 15px;
+  padding-left: 12px;
+}
+
+/* ---- Contenido principal ---- */
 .content {
-  padding: 16px;
+  padding: 24px;
 }

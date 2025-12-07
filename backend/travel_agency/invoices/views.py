@@ -10,14 +10,32 @@ class InvoiceViewSet(viewsets.ModelViewSet):
     serializer_class = InvoiceSerializer
 
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
-    search_fields = [
-        'code',
-        'dossier__code'
-    ]
-    ordering_fields = [
-        'issue_date',
-        'total_amount'
-    ]
+    search_fields = ['code', 'dossier__code']
+    ordering_fields = ['issue_date','total_amount']
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        params = self.request.query_params
+
+        # Filtrar por cliente
+        client_id = params.get('client')
+        if client_id:
+            queryset = queryset.filter(dossier__client_id=client_id)
+
+        # Filtrar por liquidación
+        settled = params.get('settled')
+        if settled == 'true':
+            queryset = queryset.filter(is_settled=True)
+        elif settled == 'false':
+            queryset = queryset.filter(is_settled=False)
+
+        # Filtrar por fecha de emisión exacta
+        issue_date = params.get('issue_date')
+        if issue_date:
+            queryset = queryset.filter(issue_date=issue_date)
+
+        return queryset
+
 
 
 class InvoiceServiceViewSet(viewsets.ModelViewSet):

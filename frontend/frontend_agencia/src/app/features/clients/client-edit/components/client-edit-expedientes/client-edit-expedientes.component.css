@@ -1,0 +1,15 @@
+.expedientes-header {
+  display: flex;
+  justify-content: flex-start;
+  margin: 20px;
+}
+
+.dossier-table a {
+  color: #3f51b5;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.dossier-table a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,14 @@
+.edit-form {
+  margin-top: 20px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.actions {
+  margin-top: 24px;
+  text-align: right;
+}

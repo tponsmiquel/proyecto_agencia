@@ -1,0 +1,28 @@
+<mat-card class="info-header">
+  <div class="row">
+    <div>
+      <label>Nombre</label>
+      <p>{{ client.first_name }} {{ client.last_name }}</p>
+    </div>
+
+    <div>
+      <label>Correo electrónico</label>
+      <p>{{ client.email }}</p>
+    </div>
+
+    <div>
+      <label>Tipo de documento</label>
+      <p>{{ client.document_type | uppercase }}</p>
+    </div>
+
+    <div>
+      <label>Nº de documento</label>
+      <p>{{ client.document_number }}</p>
+    </div>
+
+    <div>
+      <label>Teléfono</label>
+      <p>{{ client.phone_mobile || '-' }}</p>
+    </div>
+  </div>
+</mat-card>

@@ -1,0 +1,94 @@
+<div class="modal-wrapper">
+
+  <!-- HEADER -->
+  <div class="modal-header">
+    Crear cliente
+  </div>
+
+  <!-- FORM CONTENT -->
+  <div class="modal-content" [formGroup]="form">
+
+    <!-- Tipo cliente -->
+    <mat-form-field appearance="outline">
+      <mat-label>Tipo de cliente*</mat-label>
+      <mat-select formControlName="client_type">
+        <mat-option value="person">Persona</mat-option>
+        <mat-option value="company">Empresa</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Nombre -->
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre*</mat-label>
+      <input matInput formControlName="first_name">
+    </mat-form-field>
+
+    <!-- Apellido SOLO para persona -->
+    <mat-form-field appearance="outline">
+  <mat-label>Primer apellido*</mat-label>
+  <input 
+    matInput 
+    formControlName="last_name"
+    [disabled]="form.get('client_type')?.value === 'company'"
+  >
+</mat-form-field>
+
+
+    <!-- Tipo documento -->
+    <mat-form-field appearance="outline">
+      <mat-label>Tipo documento*</mat-label>
+      <mat-select formControlName="document_type">
+        <mat-option value="dni">DNI</mat-option>
+        <mat-option value="nie">NIE</mat-option>
+        <mat-option value="passport">Pasaporte</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Nº documento -->
+    <mat-form-field appearance="outline">
+      <mat-label>Nº documento*</mat-label>
+      <input matInput formControlName="document_number">
+      <mat-error *ngIf="form.get('document_number')?.hasError('invalidDNI')">
+        El DNI no tiene un formato válido
+      </mat-error>
+      <mat-error *ngIf="form.get('document_number')?.hasError('invalidNIE')">
+        El NIE no es válido
+      </mat-error>
+      <mat-error *ngIf="form.get('document_number')?.hasError('required')">
+        El documento es obligatorio
+      </mat-error>
+
+    </mat-form-field>
+
+    <!-- Email -->
+    <mat-form-field appearance="outline">
+      <mat-label>Email*</mat-label>
+      <input matInput formControlName="email">
+      <mat-error *ngIf="form.get('email')?.hasError('invalidEmail')">
+        El email no es válido
+      </mat-error>
+
+    </mat-form-field>
+
+    <!-- Teléfono móvil -->
+    <mat-form-field appearance="outline">
+      <mat-label>Teléfono móvil</mat-label>
+      <input matInput formControlName="phone_mobile">
+    </mat-form-field>
+
+    <!-- Teléfono fijo (solo una columna completa) -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Teléfono fijo</mat-label>
+      <input matInput formControlName="phone_landline">
+    </mat-form-field>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="modal-actions">
+    <button mat-button (click)="cancel()">Cancelar</button>
+    <button mat-flat-button color="primary" (click)="save()" [disabled]="form.invalid || loading">
+      Guardar
+    </button>
+  </div>
+</div>

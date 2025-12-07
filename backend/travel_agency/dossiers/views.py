@@ -10,3 +10,11 @@ class DossierViewSet(viewsets.ModelViewSet):
     search_fields = ['code', 'title', 'client__first_name', 'client__last_name']
     ordering_fields = ['created_at', 'start_date', 'end_date']
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        client_id = self.request.query_params.get('client')
+        if client_id:
+            queryset = queryset.filter(client_id=client_id)
+
+        return queryset

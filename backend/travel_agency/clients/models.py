@@ -14,7 +14,7 @@ class Client(BaseModel):
 
     client_type = models.CharField(max_length=20, choices=ClientType.choices)
     first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100, blank=True, null=True)
     document_type = models.CharField(max_length=20, choices=DocumentType.choices)
     document_number = models.CharField(max_length=50)
     email = models.EmailField(max_length=120, unique=True)

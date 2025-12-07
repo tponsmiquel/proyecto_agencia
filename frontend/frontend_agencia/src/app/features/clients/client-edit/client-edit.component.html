@@ -1,0 +1,39 @@
+<mat-toolbar color="primary">
+  Editar Cliente
+</mat-toolbar>
+
+<div class="content-wrapper">
+
+  <!-- Información fija del cliente -->
+  <app-client-info-header [client]="client"></app-client-info-header>
+
+  <div class="tabs-container">
+  <!-- Pestañas -->
+  <mat-tab-group>
+    
+    <!-- TAB 1: Ficha -->
+    <mat-tab label="Ficha">
+      <app-client-edit-ficha
+        [client]="client"
+        (clientUpdated)="reloadClient()">
+      </app-client-edit-ficha>
+    </mat-tab>
+
+    <!-- TAB 2: Expedientes -->
+    <mat-tab label="Expedientes">
+      <app-client-edit-expedientes
+        *ngIf="client"
+        [clientId]="client.id">
+      </app-client-edit-expedientes>
+    </mat-tab>
+
+    <!-- TAB 3: Gestión -->
+    <mat-tab label="Gestión">
+      <app-client-edit-gestion
+        [clientId]="client.id">
+      </app-client-edit-gestion>
+    </mat-tab>
+
+  </mat-tab-group>
+
+</div>

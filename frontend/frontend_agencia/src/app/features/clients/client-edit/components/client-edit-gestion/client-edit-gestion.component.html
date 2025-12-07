@@ -1,0 +1,52 @@
+<div class="gestion-container">
+
+  <!-- Filtros (los añadiremos después si quieres) -->
+
+  <table mat-table [dataSource]="invoices" class="mat-elevation-z2 invoice-table">
+
+    <!-- Código -->
+    <ng-container matColumnDef="code">
+      <th mat-header-cell *matHeaderCellDef> Código </th>
+      <td mat-cell *matCellDef="let inv">
+        <a [routerLink]="['/invoices', inv.id]">{{ inv.code }}</a>
+      </td>
+    </ng-container>
+
+    <!-- Fecha -->
+    <ng-container matColumnDef="issue_date">
+      <th mat-header-cell *matHeaderCellDef> Fecha emisión </th>
+      <td mat-cell *matCellDef="let inv">
+        {{ inv.issue_date | date:'dd/MM/yyyy' }}
+      </td>
+    </ng-container>
+
+    <!-- Total -->
+    <ng-container matColumnDef="total_amount">
+      <th mat-header-cell *matHeaderCellDef> Total </th>
+      <td mat-cell *matCellDef="let inv">
+        {{ inv.total_amount | currency:'EUR' }}
+      </td>
+    </ng-container>
+
+    <!-- Liquidada -->
+    <ng-container matColumnDef="is_settled">
+      <th mat-header-cell *matHeaderCellDef> Liquidada </th>
+      <td mat-cell *matCellDef="let inv">
+        {{ inv.is_settled ? 'Sí' : 'No' }}
+      </td>
+    </ng-container>
+
+    <!-- Nº servicios -->
+    <ng-container matColumnDef="num_services">
+      <th mat-header-cell *matHeaderCellDef> Nº Servicios </th>
+      <td mat-cell *matCellDef="let inv">
+        {{ inv.invoice_services?.length || 0 }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+  </table>
+
+</div>

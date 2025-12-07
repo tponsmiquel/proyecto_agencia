@@ -1,4 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* html, body { height: 100%; }
+/* body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Más margen alrededor del modal */
+.custom-dialog-container .mat-mdc-dialog-container {
+  margin-top: 40px !important;
+  border-radius: 12px !important;
+  padding: 0 !important;
+}
+
+/* Padding interno del contenido */
+.custom-dialog-container .mat-mdc-dialog-surface {
+  padding: 24px !important;
+}
+
+/* Evitar que el modal se aplaste */
+.custom-dialog-container .mat-mdc-dialog-content {
+  max-height: 70vh !important;
+}
+
+/* Base */
+.mat-mdc-snack-bar-container.snackbar-base {
+  color: #fff !important;
+  font-size: 14px;
+  border-radius: 6px !important;
+}
+
+/* Éxito */
+.mat-mdc-snack-bar-container.snackbar-success {
+  background-color: #2e7d32 !important;
+}
+
+/* Error */
+.mat-mdc-snack-bar-container.snackbar-error {
+  background-color: #c62828 !important;
+  white-space: pre-line;
+}
+
+

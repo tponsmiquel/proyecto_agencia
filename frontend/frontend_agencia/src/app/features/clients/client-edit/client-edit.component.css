@@ -1,0 +1,23 @@
+/* Contenedor de tabs (opcional) */
+.tabs-container {
+  margin-top: 16px;
+}
+
+/* Fondo azul claro para TODAS las tabs */
+:host ::ng-deep .mat-mdc-tab {
+  background-color: #e3f2fd;
+  border-radius: 4px 4px 0 0;
+  min-height: 48px;
+}
+
+/* Tab ACTIVA: fondo azul oscuro + texto blanco */
+:host ::ng-deep .mat-mdc-tab[aria-selected="true"] {
+  background-color: #78a3e4;
+  color: #ffffff;
+}
+
+/* Indicador (la barrita de abajo) en azul oscuro */
+:host ::ng-deep .mdc-tab-indicator__content--underline {
+  border-color: #184c9b !important;
+  border-width: 3px !important;
+}

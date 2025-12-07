@@ -1,0 +1,22 @@
+.info-header {
+  background: #f6f6f6;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  padding: 16px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+label {
+  font-size: 13px;
+  font-weight: bold;
+  color: #555;
+}
+
+p {
+  margin: 4px 0 0 0;
+}

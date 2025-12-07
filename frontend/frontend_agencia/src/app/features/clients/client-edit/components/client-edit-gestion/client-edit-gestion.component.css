@@ -1,0 +1,25 @@
+.gestion-container {
+  margin-top: 20px;
+}
+
+/* Tabla */
+.invoice-table {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.invoice-table th {
+  font-weight: 600;
+  color: #444;
+}
+
+.invoice-table td a {
+  color: #1976d2;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.invoice-table td a:hover {
+  text-decoration: underline;
+}
+

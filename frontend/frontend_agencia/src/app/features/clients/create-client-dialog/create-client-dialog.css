@@ -1,0 +1,47 @@
+/* --- CONTENEDOR GENERAL DEL MODAL --- */
+.modal-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+}
+
+/* --- HEADER ESTILO MIKE --- */
+.modal-header {
+  background-color: #0D47A1; /* Azul MIKE */
+  color: white;
+  padding: 16px 24px;
+  font-size: 18px;
+  font-weight: 600;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+/* --- CONTENIDO INTERNO --- */
+.modal-content {
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+/* Campo en una sola columna */
+.full-width {
+  grid-column: span 2;
+}
+
+/* --- FOOTER/BOTONES --- */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px 24px;
+  gap: 16px;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Redondeado global del modal */
+.custom-dialog-container .mat-mdc-dialog-surface {
+  border-radius: 12px !important;
+}
